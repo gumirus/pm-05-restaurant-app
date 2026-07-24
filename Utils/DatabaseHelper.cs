@@ -6,7 +6,7 @@ namespace RestaurantApp;
 public static class DatabaseHelper
 {
     // Измени строку подключения под свой XAMPP
-    private static readonly string ConnectionString = "Server=localhost;Database=csharp_users_db;User Id=root;Password=;";
+    private static readonly string ConnectionString = "Server=localhost;Database=csharp_users_db;User Id=root;Password=;Charset=utf8;";
 
     public static MySqlConnection GetConnection()
     {
@@ -18,7 +18,7 @@ public static class DatabaseHelper
         try
         {
             // Сначала создаём БД, если нет
-            using var conn = new MySqlConnection("Server=localhost;User Id=root;Password=;");
+            using var conn = new MySqlConnection("Server=localhost;User Id=root;Password=;Charset=utf8;");
             conn.Open();
             var cmd = new MySqlCommand("CREATE DATABASE IF NOT EXISTS csharp_users_db CHARACTER SET utf8 COLLATE utf8_general_ci;", conn);
             cmd.ExecuteNonQuery();
@@ -79,9 +79,9 @@ public static class DatabaseHelper
             // Добавляем тестовые данные в меню
             using var conn5 = GetConnection();
             conn5.Open();
-            var checkData = new MySqlCommand("SELECT COUNT(*) FROM menu_items", conn5);
-            long count = (long)checkData.ExecuteScalar();
-            if (count == 0)
+            // Очищаем и перезаливаем (на случай битой кодировки)
+            var clearCmd = new MySqlCommand("TRUNCATE TABLE menu_items", conn5);
+            clearCmd.ExecuteNonQuery();
             {
                 var insertData = @"
                     INSERT INTO menu_items (name, category, price, description) VALUES
