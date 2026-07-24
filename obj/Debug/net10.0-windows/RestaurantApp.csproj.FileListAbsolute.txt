@@ -26,3 +26,4 @@
 /Users/gumirus/Documents/synergy/ПМ.05/RestaurantApp/obj/Debug/net10.0-windows/RestaurantApp.pdb
 /Users/gumirus/Documents/synergy/ПМ.05/RestaurantApp/obj/Debug/net10.0-windows/RestaurantApp.genruntimeconfig.cache
 /Users/gumirus/Documents/synergy/ПМ.05/RestaurantApp/obj/Debug/net10.0-windows/ref/RestaurantApp.dll
+/Users/gumirus/Documents/synergy/ПМ.05/RestaurantApp/obj/Debug/net10.0-windows/RestaurantApp.sourcelink.json
